@@ -59,7 +59,6 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
-	default
 	if mkdir "${ROOT%/}/keybase" &>/dev/null; then
 		chmod 777 "${ROOT%/}/keybase"
 	fi
