@@ -11,13 +11,11 @@ MY_P="${MY_PN}_${PV}-${MY_PV}"
 
 DESCRIPTION="GUI client for keybase.io"
 HOMEPAGE="https://keybase.io/"
-SRC_URI="
-	x86? ( https://s3.amazonaws.com/prerelease.keybase.io/linux_binaries/deb/${MY_P}_i386.deb -> ${PF}.deb )
-	amd64? ( https://s3.amazonaws.com/prerelease.keybase.io/linux_binaries/deb/${MY_P}_amd64.deb -> ${PF}.deb )"
+SRC_URI="https://s3.amazonaws.com/prerelease.keybase.io/linux_binaries/deb/${MY_P}_amd64.deb -> ${PF}.deb"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64"
 IUSE=""
 
 QA_PREBUILT="opt/keybase/Keybase"
