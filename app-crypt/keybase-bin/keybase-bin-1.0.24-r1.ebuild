@@ -9,14 +9,19 @@ MY_PN="keybase"
 MY_PV="20170526160108.83e1e9f"
 MY_P="${MY_PN}_${PV}-${MY_PV}"
 
+DIST_X86="${MY_P}_i386.deb"
+DIST_AMD64="${MY_P}_amd64.deb"
+
 DESCRIPTION="GUI client for keybase.io"
 HOMEPAGE="https://keybase.io/"
-SRC_URI="https://s3.amazonaws.com/prerelease.keybase.io/linux_binaries/deb/${MY_P}_amd64.deb -> ${PF}.deb"
+SRC_URI="
+  x86? ( https://s3.amazonaws.com/prerelease.keybase.io/linux_binaries/deb/${DIST_X86} -> ${PF}-x86.deb )
+  amd64? ( https://s3.amazonaws.com/prerelease.keybase.io/linux_binaries/deb/${DIST_AMD64} -> ${PF}-amd64.deb )"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64"
-IUSE=""
+KEYWORDS="~x86 ~amd64"
+RESTRICT="mirror"
 
 QA_PREBUILT="opt/keybase/Keybase"
 S="${WORKDIR}/opt/keybase"
@@ -27,8 +32,14 @@ DEPEND="gnome-base/gconf
 RDEPEND="${DEPEND}"
 
 src_unpack() {
-	cp "${DISTDIR}/${PF}.deb" .
-	ar x "./${PF}.deb"
+  if use amd64; then
+      cp "${DISTDIR}/${PF}-amd64.deb" "./${PN}.deb"
+  elif use x86; then
+      cp "${DISTDIR}/${PF}-x86.deb" "./${PN}.deb"
+  else
+      die "Unsupported arch detected!!"
+  fi
+	ar x "./${PN}.deb"
 	unpack "./data.tar.xz"
 }
 
