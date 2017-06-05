@@ -17,7 +17,7 @@ KEYWORDS="~x86 ~amd64"
 IUSE=""
 
 DEPEND="x11-libs/libwnck
-    dev-dev-python/pygobject:3"
+    dev-python/pygobject:3"
 RDEPEND="${DEPEND}"
 
 src_install(){
