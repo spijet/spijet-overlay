@@ -19,13 +19,6 @@ RDEPEND="
 	>=gnome-base/gnome-core-libs-${PV}
 
 	>=sys-apps/baobab-3.22.1
-
-  # Nope, thank you:
-  # >=media-video/cheese-3.22.1
-
-  # I prefer Firefox:
-	# >=www-client/epiphany-3.22.2
-
 	>=app-arch/file-roller-3.22.1
 	>=gnome-extra/gnome-calculator-${PV}
 	>=gnome-extra/gnome-calendar-3.22.1
@@ -38,8 +31,6 @@ RDEPEND="
 	>=gnome-extra/gnome-weather-3.20.2
 	>=gnome-extra/gucharmap-9.0.2:2.90
 	>=gnome-extra/sushi-3.21.91
-  # I don't have a CD drive here:
-	# >=media-sound/sound-juicer-3.22.1
 	>=net-misc/vino-3.22.0
 
 	>=gnome-base/dconf-editor-3.22.1
