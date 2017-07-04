@@ -102,7 +102,8 @@ src_configure() {
 		$(use_enable qt5 liblightdm-qt5) \
 		--with-user-session=${_session} \
 		--with-greeter-session=${_greeter} \
-		--with-greeter-user=${_user}
+		--with-greeter-user=${_user} \
+		--with-html-dir="${EPREFIX}"/usr/share/doc/${PF}/html
 }
 
 src_install() {
