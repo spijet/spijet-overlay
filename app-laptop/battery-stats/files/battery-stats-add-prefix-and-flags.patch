@@ -1,0 +1,55 @@
+diff -ru battery-stats-0.5.6/data/CMakeLists.txt battery-stats-0.5.6.new/data/CMakeLists.txt
+--- battery-stats-0.5.6/data/CMakeLists.txt	2017-07-11 01:54:33.784277465 +0800
++++ battery-stats-0.5.6.new/data/CMakeLists.txt	2017-07-11 02:12:01.994687998 +0800
+@@ -26,24 +26,31 @@
+   DESTINATION ${CMAKE_INSTALL_PREFIX}/share/applications
+ )
+ 
+-FILE(GLOB PMSLEEP_FILES "pm-utils-sleep.d/*")
+-install(
+-    PROGRAMS ${PMSLEEP_FILES}
+-    DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pm-utils/sleep.d
+-)
+-FILE(GLOB PMPOWER_FILES "pm-utils-power.d/*")
+-install(
+-    PROGRAMS ${PMPOWER_FILES}
+-    DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pm-utils/power.d
+-)
+-FILE(GLOB SYSTEMDSLEEP_FILES "systemd-system-sleep/*")
+-install(
+-    PROGRAMS ${SYSTEMDSLEEP_FILES}
+-    DESTINATION /lib/systemd/system-sleep
+-)
++if(WITH_PMUTILS)
++    FILE(GLOB PMSLEEP_FILES "pm-utils-sleep.d/*")
++    install(
++        PROGRAMS ${PMSLEEP_FILES}
++        DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pm-utils/sleep.d
++    )
++    FILE(GLOB PMPOWER_FILES "pm-utils-power.d/*")
++    install(
++        PROGRAMS ${PMPOWER_FILES}
++        DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pm-utils/power.d
++    )
++endif()
+ 
+-FILE(GLOB UDEVRULES_FILES "udev-rules.d/*")
+-install(
+-    FILES ${UDEVRULES_FILES}
+-    DESTINATION /lib/udev/rules.d
+-)
++if(WITH_SYSTEMD)
++    FILE(GLOB SYSTEMDSLEEP_FILES "systemd-system-sleep/*")
++    install(
++        PROGRAMS ${SYSTEMDSLEEP_FILES}
++        DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/systemd/system-sleep
++    )
++endif()
++
++if(WITH_UDEV)
++    FILE(GLOB UDEVRULES_FILES "udev-rules.d/*")
++    install(
++        FILES ${UDEVRULES_FILES}
++        DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/udev/rules.d
++    )
++endif()
