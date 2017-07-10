@@ -37,3 +37,12 @@ src_configure() {
     )
     cmake-utils_src_configure
 }
+
+src_install() {
+    cmake-utils_src_install
+    fperms 0755 "/usr/share/battery-stats/battery-stats-generate" \
+           "/usr/share/battery-stats/battery-stats-graph" \
+           "/usr/share/battery-stats/battery-stats-graph-flow" \
+           "/usr/share/battery-stats/collect-csv" \
+           "/usr/share/battery-stats/graph-setup"
+}
