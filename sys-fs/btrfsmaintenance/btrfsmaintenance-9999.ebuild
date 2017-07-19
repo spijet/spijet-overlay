@@ -27,20 +27,12 @@ HOMEPAGE="https://github.com/kdave/btrfsmaintenance"
 
 LICENSE="GPL2"
 SLOT="0"
-#IUSE=""
+IUSE=""
 
-#CDEPEND="
-#	"
-#DEPEND="${CDEPEND}
-#	"
 RDEPEND="app-shells/bash
 	 sys-fs/btrfs-progs"
 
 src_install() {
-	#dodir "/usr/share/${PN}"
-	# copy files to expected directory
-	#cp -R "${S}/${P}/" "${D}/usr/share/${PN}" || die "Install failed!"
-
 	exeinto "/usr/share/${PN}"
 	doexe btrfs-balance.sh
 	doexe btrfs-defrag.sh
@@ -59,11 +51,11 @@ src_install() {
 	doins COPYING
 
 	insinto "/etc/default"
-	newins sysconfig.${PN} ${PN}
+	newins "sysconfig.${PN}" "${PN}"
 
-	systemd_dounit ${PN}-refresh.service
+	systemd_dounit "${PN}-refresh.service"
 
-	dosym "/usr/share/${PN}/${PN}-refresh-cron.sh" "/etc/cron.hourly/"
+	dosym "/usr/share/${PN}/${PN}-refresh-cron.sh" "/etc/cron.hourly/${PN}-refresh-cron.sh"
 }
 
 pkg_postinst() {
