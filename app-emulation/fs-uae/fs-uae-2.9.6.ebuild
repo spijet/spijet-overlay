@@ -13,6 +13,8 @@ KEYWORDS=""
 SLOT="0"
 IUSE="drivers glew qt5"
 
+KEYWORDS="-* ~amd64 ~x86"
+
 RDEPEND="
 	glew?	( media-libs/glew:0 )
 	qt5?	( dev-qt/qtgui:5 )

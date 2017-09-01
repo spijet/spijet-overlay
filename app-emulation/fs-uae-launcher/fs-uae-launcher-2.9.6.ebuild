@@ -15,6 +15,8 @@ KEYWORDS=""
 SLOT="0"
 IUSE=""
 
+KEYWORDS="-* ~amd64 ~x86"
+
 RDEPEND="
 	${PYTHON_DEPS}
 	app-emulation/fs-uae
